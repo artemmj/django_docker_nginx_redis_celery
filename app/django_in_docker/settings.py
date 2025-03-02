@@ -2,7 +2,7 @@ import os
 from os import environ
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = environ.get('SECRET_KEY', default='super-secret-key')
 DEBUG = environ.get('DEBUG', default=True)
@@ -50,7 +50,7 @@ WSGI_APPLICATION = "django_in_docker.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': environ.get('POSTGRES_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': environ.get('POSTGRES_DB', BASE_DIR / 'db.sqlite3'),
+        'NAME': environ.get('POSTGRES_DB', 'db.sqlite3'),
         'USER': environ.get('POSTGRES_USER', 'user'),
         'PASSWORD': environ.get('POSTGRES_PASSWORD', 'password'),
         'HOST': environ.get('POSTGRES_HOST', 'localhost'),
