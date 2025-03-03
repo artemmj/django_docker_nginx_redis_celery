@@ -24,3 +24,14 @@ services:
     env_file: .env.dev
     volumes:
       - ./volumes/db/data:/var/lib/postgresql/data
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - 1337:80
+    volumes:
+      - ./volumes/media:/media
+      - ./volumes/static:/static
+    depends_on:
+      - app
