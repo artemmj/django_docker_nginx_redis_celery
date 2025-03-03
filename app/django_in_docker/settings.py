@@ -5,7 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = environ.get('SECRET_KEY', default='super-secret-key')
-DEBUG = environ.get('DEBUG', default=True)
+DEBUG = environ.get('DEBUG', default=False)
 ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS', default='0.0.0.0').split(' ')
 
 INSTALLED_APPS = [
