@@ -68,3 +68,6 @@ volumes
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# Celery
+celerybeat-schedule

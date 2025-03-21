@@ -5,7 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = environ.get('SECRET_KEY', default='super-secret-key')
-DEBUG = environ.get('DEBUG', default=False)
+DEBUG = bool(os.environ.get('DEBUG'))
 ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS', default='0.0.0.0').split(' ')
 
 INSTALLED_APPS = [
@@ -88,3 +88,16 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://redis/14')
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', 'redis://redis/15')
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = os.environ.get('TIME_ZONE', 'Europe/Moscow')
+CELERYBEAT_SCHEDULE = {
+    # 'update_is_published_news_mailing_task': {
+    #     'task': 'apps.news.tasks.update_is_published_news_mailing',
+    #     'schedule': 60,
+    # },
+}

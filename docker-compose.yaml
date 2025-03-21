@@ -14,9 +14,10 @@ services:
       - ./.env.dev
     depends_on:
       - db
+      - redis
 
   db:
-    container_name: db
+    container_name: database
     image: postgres:17-alpine
     env_file: .env.dev
     volumes:
@@ -30,5 +31,22 @@ services:
     volumes:
       - ./volumes/media:/media
       - ./volumes/static:/static
+    depends_on: [app]
+
+  redis:
+    container_name: redis
+    image: redis:7.4-alpine
+    restart: always
+    volumes:
+      - ./volumes/redis/data:/data
+    ports:
+      - '6379:6379'
+
+  celery:
+    container_name: celery
+    build: .
+    command: celery -A django_in_docker.celery worker -l info -B -c 4
+    ports: []
     depends_on:
       - app
+      - redis
