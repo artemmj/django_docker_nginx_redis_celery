@@ -95,9 +95,9 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = os.environ.get('TIME_ZONE', 'Europe/Moscow')
-CELERYBEAT_SCHEDULE = {
-    # 'update_is_published_news_mailing_task': {
-    #     'task': 'apps.news.tasks.update_is_published_news_mailing',
-    #     'schedule': 60,
-    # },
-}
+# CELERYBEAT_SCHEDULE = {
+#     'task_task': {
+#         'task': 'django_in_docker.tasks.test_task',
+#         'schedule': 5,
+#     },
+# }
